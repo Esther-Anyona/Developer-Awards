@@ -6,7 +6,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.png', upload_to='profile_pics')
+    profile_pic = models.ImageField(default='default.png', upload_to='profile_pics')
     bio = models.TextField(max_length=100)
     contact=models.IntegerField(default=0)
 
@@ -20,7 +20,7 @@ class Profile(models.Model):
         if img.height > 300 or img.width > 300:
             output_size = (300, 300)
             img.thumbnail(output_size)
-            img.save(self.image.path)
+            img.save(self.profile_pic.path)
     
     @classmethod
     def get_profile(cls):
@@ -64,7 +64,7 @@ class Location(models.Model):
 class Project(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
     project_image = models.ImageField(upload_to='projects/',null=True)
-    project_title = models.CharField(max_length=100, null=True)
+    title = models.CharField(max_length=100, null=True)
     description = models.TextField(max_length=1000,  null=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='profile')
     date_created = models.DateTimeField(auto_now_add=True)
@@ -73,7 +73,7 @@ class Project(models.Model):
     like = models.PositiveIntegerField(default=0)
     
     def __str__(self):
-            return self.project_title
+            return self.title
     
     def save_image(self):
         self.save()
@@ -85,7 +85,7 @@ class Project(models.Model):
     
     @classmethod
     def find_project(cls,search_term):
-        project = Project.objects.filter(project_title__icontains=search_term)
+        project = Project.objects.filter(title__icontains=search_term)
         return project
     
     @property
