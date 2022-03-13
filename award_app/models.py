@@ -7,7 +7,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(default='default.png', upload_to='profile_pics')
-    bio = models.TextField(max_length=100)
+    bio = models.TextField(max_length=200)
     contact=models.IntegerField(default=0)
 
     def __str__(self):
@@ -16,7 +16,7 @@ class Profile(models.Model):
     def save_profile(self):
         super().save()
 
-        img = Image.open(self.image.path)
+        img = Image.open(self.profile_pic.path)
         if img.height > 300 or img.width > 300:
             output_size = (300, 300)
             img.thumbnail(output_size)
@@ -75,7 +75,7 @@ class Project(models.Model):
     def __str__(self):
             return self.title
     
-    def save_image(self):
+    def save_project_image(self):
         self.save()
         
     @classmethod
