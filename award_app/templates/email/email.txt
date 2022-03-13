@@ -1,0 +1,4 @@
+Hey {{name}}
+
+Welcome to the  Awards Website!
+    You will be able to view, rate and review projects.
