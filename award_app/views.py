@@ -64,7 +64,7 @@ def logout(request):
 
 @login_required(login_url='/accounts/login/')
 def new_profile(request):
-    project = Project.objects.filter(author=request.user).order_by('-date_posted')
+    project = Project.objects.filter(author=request.user).order_by('-date_created')
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
@@ -85,7 +85,7 @@ def new_profile(request):
         'p_form': p_form,
         'project' : project
     }
-    return render(request, 'profile/profile.html', context)
+    return render(request, 'profile.html', context)
 
 @login_required(login_url='/accounts/login/')
 def project(request):
@@ -108,7 +108,7 @@ def project(request):
                     'user':current_user,
                     'form':form
                 }
-            return render(request,'project.html', context)
+            return render(request,'projects.html', context)
         
 @login_required(login_url='/accounts/login/')
 @csrf_protect
@@ -130,7 +130,7 @@ def rating(request, pk):
             rating.content_rating = content_rating
             rating.comment = comment
             rating.save()
-            # return redirect('home')
+            return redirect('home')
     else:
         form = RatingForm()
     return render(request,'rating.html', {'project' : project, 'form' : form})   
