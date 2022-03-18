@@ -1,1 +1,11 @@
-<h1>Hello</h1>
+{%extends 'base.html'%}
+{% load static %}
+{% load bootstrap5 %}
+{% block content %}
+<div class="container-fluid">
+    {% for project in projects %}
+    <h1>{{ project.author }}</h1>
+    <p>hey</p>
+    {% endfor %}
+</div>
+{% endblock %}
