@@ -2,10 +2,59 @@
 {% load static %}
 {% load bootstrap5 %}
 {% block content %}
-<div class="container-fluid">
-    {% for project in projects %}
-    <h1>{{ project.author }}</h1>
-    <p>hey</p>
-    {% endfor %}
+<div class="container-fluid pt-3">
+    <div class="row">
+        {% for project in projects %}
+        <div class="col-md-4">
+            <div class="d-flex">
+                <div class="card mt-2">
+                    <div class="view overlay">
+                        <img href="#!" class="card-img-top" src="{{ project.project_image.url }}"
+                            alt="{{ project.title }}">
+                        <a href="#!">
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <a href="{% url 'rating' project.id %}">
+                            <h6 class="card-title black-text">{{ project.title }}</h6>
+                            </a>
+                            <p class="float-left" style="color: black; opacity: 0.7;">From {{ project.location }}</p>
+                            <p class="float-right" style="color: black; opacity: 0.7;">{{ project.date_created | date:'F d, Y'}}</p>
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="card-content text-center">
+                            <div class="float-left logo px-3 d-flex align-items-center ">
+                                <a href="{% url 'profile' %}">
+                                    <img src="{{ project.author.profile.image.url }}"
+                                    class="rounded-circle img-fluid" width="40" height="40">&nbsp;
+                                </a>
+                                <h4 class="text-uppercase mt-2" style="font-size: 12px;">
+                                    by <a class="mr-2" href="{% url 'rating' project.pk %}"><strong class="black-text font-weight-bold">{{ project.author }}</strong> </a>
+                                </h4>
+
+                            </div>
+                            <div class="float-right">
+                                <ul class="list-unstyled list-inline font-small mt-3 px-4">
+                                    <li class="list-inline-item pr-2"><a href="#!" class="black-text"><i
+                                                class="far fa-comments pr-1"></i>{{ project.number_of_comments}}</a>
+                                    </li>
+                                    <li class="list-inline-item pr-2"><a href="#!" class="black-text"><i
+                                                class="fas fa-tags pr-1">
+                                            </i>{{ project.number_of_tags }}</a></li>
+                                    <li class="list-inline-item"><a href="#!" class="black-text"><i
+                                                class="fas fa-thumbs-up pr-1">
+                                            </i>{{ project.like }}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
 </div>
 {% endblock %}
