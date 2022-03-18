@@ -95,6 +95,18 @@ class Project(models.Model):
     @property
     def number_of_tags(self):
         return tags.objects.filter(project=self).count()
+
+    def design(self):
+        avg_design =list( map(lambda x: x.design_rating, self.ratings.all()))
+        return np.mean(avg_design)
+
+    def usability(self):
+        avg_usability =list( map(lambda x: x.usability_rating, self.ratings.all()))
+        return np.mean(avg_usability)
+
+    def content(self):
+        avg_content =list( map(lambda x: x.content_rating, self.ratings.all()))
+        return np.mean(avg_content)
         
 class Comment(models.Model):
     content = models.TextField(null=True)
