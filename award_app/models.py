@@ -140,9 +140,6 @@ class Ratings(models.Model):
     content_rating = models.PositiveIntegerField(choices=RATING_CHOICES, default=0)
     date_created = models.DateTimeField(auto_now_add=True)
     comment = models.TextField()
-
-    # def __str__(self):
-    #     return self.author        
     
     def save_comment(self):
             self.save()
