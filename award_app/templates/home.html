@@ -1,4 +1,4 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 {% load static %}
 {% load bootstrap5 %}
 {% block content %}
@@ -37,17 +37,9 @@
 
                             </div>
                             <div class="float-right">
-                                <ul class="list-unstyled list-inline font-small mt-3 px-4">
-                                    <li class="list-inline-item pr-2"><a href="#!" class="black-text"><i
-                                                class="far fa-comments pr-1"></i>{{ project.number_of_comments}}</a>
-                                    </li>
-                                    <li class="list-inline-item pr-2"><a href="#!" class="black-text"><i
-                                                class="fas fa-tags pr-1">
-                                            </i>{{ project.number_of_tags }}</a></li>
-                                    <li class="list-inline-item"><a href="#!" class="black-text"><i
-                                                class="fas fa-thumbs-up pr-1">
-                                            </i>{{ project.like }}</a></li>
-                                </ul>
+                                <a href="#!"><i class='far fa-comment mx-2' style='font-size:18px'>{{ project.number_of_comments}}</i></a>
+                                <a href="#!"><i class='fas fa-tags mx-2' style='font-size:18px'>{{ project.number_of_tags }}</i></a>
+                                <a href="#!"><i  class='fas fa-thumbs-up mx-2' style='font-size:18px'>{{ project.like }}</i></a>
                             </div>
                         </div>
                     </div>

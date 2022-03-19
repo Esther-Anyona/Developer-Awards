@@ -115,7 +115,7 @@ class Comment(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='project_comment')        
     
     def __str__(self):
-        return self.comment
+        return self.content
     
     def save_comment(self):
         self.save()    
