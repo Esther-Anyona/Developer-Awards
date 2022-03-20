@@ -14,6 +14,8 @@ from pathlib import Path
 from decouple import config, Csv
 import dj_database_url
 import django_heroku
+import psycopg2
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -98,7 +100,7 @@ if config('MODE')=='dev':
 else:
    DATABASES = {
        'default': dj_database_url.config(
-        #    default=config('DATABASE_URL')
+           default=config('DATABASE_URL')
        )
    }
 
