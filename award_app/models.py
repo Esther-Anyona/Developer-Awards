@@ -109,6 +109,9 @@ class Project(models.Model):
     def content(self):
         avg_content =list( map(lambda x: x.content_rating, self.ratings.all()))
         return np.mean(avg_content)
+
+    class Meta:
+        ordering =['-date_created']
         
 class Comment(models.Model):
     content = models.TextField(null=True)
