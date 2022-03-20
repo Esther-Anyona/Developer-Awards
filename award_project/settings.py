@@ -98,7 +98,7 @@ if config('MODE')=='dev':
 else:
    DATABASES = {
        'default': dj_database_url.config(
-           default=config('DATABASE_URL')
+        #    default=config('DATABASE_URL')
        )
    }
 
@@ -148,7 +148,7 @@ STATIC_DIR=os.path.join(BASE_DIR,"static")
 STATIC_URL = 'static/'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
