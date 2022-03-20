@@ -24,7 +24,7 @@
                             <p class="float-left" style="color: black; opacity: 0.7;">From {{ project.location }}</p>
                             <p class="float-right" style="color: black; opacity: 0.7;">{{ project.date_created | date:'F d, Y'}}</p>
                         </div>
-                        <br>
+                        <a href="{{project.project_url}}" target="_blank" class="btn btn-primary">View</a>
                         <hr>
                         <div class="card-content text-center">
                             <div class="float-left logo px-3 d-flex align-items-center ">
@@ -32,6 +32,7 @@
                                     <img src="{{ project.author.profile.profile_pic.url }}"
                                     class="rounded-circle img-fluid" width="40" height="40">&nbsp;
                                 </a>
+
                                 <h4 class="text-uppercase mt-2" style="font-size: 12px;">
                                     by <a class="mr-2" href="{% url 'rating' project.pk %}"><strong class="black-text font-weight-bold">{{ project.author }}</strong> </a>
                                 </h4>

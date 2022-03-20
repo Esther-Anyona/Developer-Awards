@@ -68,6 +68,7 @@ class Project(models.Model):
     title = models.CharField(max_length=100, null=True)
     description = models.TextField(max_length=1000,  null=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='profile')
+    project_url = models.URLField(null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     location=models.ForeignKey(Location, on_delete=models.CASCADE, null=True)
     tags=models.ManyToManyField(tags, blank=True)
