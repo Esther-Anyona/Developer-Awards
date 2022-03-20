@@ -36,6 +36,7 @@
                                 bio&nbsp;:&nbsp;
                             {% if user.profile.bio %}
                             {{ user.profile.bio }}
+                            <p>Contact: {{user.profile.contact}}</p>
                             {%else%}
                             {{ user.username}} has no bio
                             {% endif %}
