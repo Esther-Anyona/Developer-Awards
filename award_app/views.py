@@ -133,4 +133,4 @@ def rating(request, pk):
             return redirect('home')
     else:
         form = RatingForm()
-    return render(request,'rating.html', {'project' : project, 'form' : form})   
+    return render(request,'ratings.html', {'project' : project, 'form' : form})   
