@@ -133,4 +133,19 @@ def rating(request, pk):
             return redirect('home')
     else:
         form = RatingForm()
-    return render(request,'ratings.html', {'project' : project, 'form' : form})   
+    return render(request,'ratings.html', {'project' : project, 'form' : form})  
+
+@login_required(login_url='/accounts/login/')
+def search (request):
+    form = RatingForm()
+    current_user = request.user
+    if 'project' in request.GET and request.GET["project"]:
+        search = request.GET.get("project")
+        searched_projects = Project.find_project(search)
+        message = f'{search}'
+
+        return render(request, 'search.html',{"message":message,"results": searched_projects, "current_user":current_user, "form":form})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message, "current_user":current_user, "form":form}) 

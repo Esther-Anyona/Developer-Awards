@@ -25,6 +25,10 @@
                 <a class="nav-item nav-link text-light" href="/accounts/login">Login</a>
                 <a class="nav-item nav-link text-light" href="/accounts/register">Register</a>
                 {% endif %}
+                <form class="d-flex" role="search" action=" {% url 'search' %}">
+                    <input class="form-control me-2" type="search" placeholder="Search Project" aria-label="Search" name = 'project'>
+                    <button class="btn btn-outline-warning" type="submit">Search</button>
+                  </form>
             </div>
         </div>
     </div>
