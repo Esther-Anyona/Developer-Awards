@@ -9,6 +9,9 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
 from .models import *
 from .forms import *
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProfileSerializer, ProjectSerializer
 
 
 
@@ -149,3 +152,15 @@ def search (request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message, "current_user":current_user, "form":form}) 
+
+class ProjectList(APIView):
+    def get(self,request, format = None):
+        all_projects = Project.objects.all()
+        serializer = ProjectSerializer(all_projects, many = True)
+        return Response(serializer.data)
+
+class ProfileList(APIView):
+    def get(self, request, format = None):
+        all_profiles = Profile.objects.all()
+        serializer = ProfileSerializer(all_profiles, many = True)
+        return Response(serializer.data)
