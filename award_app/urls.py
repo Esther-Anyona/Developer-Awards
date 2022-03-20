@@ -10,6 +10,7 @@ urlpatterns = [
     path('new/profile/',views.new_profile, name='profile'),
     path('project/', views.project, name='project'),
     path('rating/<int:pk>/',views.rating,name='rating'),
+    path('search/', views.search, name='search'),
     path('api/project/', views.ProjectList.as_view()),
     path('api/profile/', views.ProfileList.as_view()),
 
